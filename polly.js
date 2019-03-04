@@ -2,13 +2,15 @@ const AWS = require("aws-sdk");
 const Speaker = require("speaker");
 const Stream = require("stream");
 
-//Warning: Don't hardcode your AWS Keys
-//Read more at http://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-credentials-node.html
 const Polly = new AWS.Polly({
   region: process.env.AWS_REGION || "us-east-1", //"eu-west-1",
   accessKeyId: process.env.ACCESS_KEY,
   secretAccessKey: process.env.SECRET
 });
+
+if (!Polly.config.credentials || !Polly.config.credentials.accessKeyId) {
+  throw new Error("AWS sdk not configured!");
+}
 
 const getPlayer = function() {
   return new Speaker({
