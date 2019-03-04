@@ -1,7 +1,7 @@
 {
   "name": "stratechery-reader",
   "version": "1.2.0",
-  "description": "Use AWS Polly to transcribe artiles from stratechery.com into speech",
+  "description": "Use AWS Polly to transcribe articles from stratechery.com into speech",
   "main": "index.js",
   "bin": {
     "stratechery-reader": "./index.js"
