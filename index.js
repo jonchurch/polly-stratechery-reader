@@ -1,4 +1,4 @@
-// require("dotenv").config();
+#!/usr/bin/env node
 const axios = require("axios");
 const cheerio = require("cheerio");
 
