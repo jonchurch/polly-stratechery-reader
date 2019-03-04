@@ -18,7 +18,7 @@ const getPlayer = function() {
   });
 };
 
-const params = { OutputFormat: "pcm", VoiceId: "Raveena" };
+const params = { OutputFormat: "pcm", VoiceId: "Matthew" };
 
 const speak = function(text) {
   params.Text = text;
