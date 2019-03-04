@@ -1,7 +1,7 @@
 {
-  "name": "polly",
+  "name": "polly-stratechery-reader",
   "version": "1.0.0",
-  "description": "",
+  "description": "Use AWS Polly to transcribe artiles from stratechery.com into speech",
   "main": "index.js",
   "bin": {
     "readme": "./index.js"
@@ -9,8 +9,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+	  "type": "git",
+	  "url": "https://github.com/jonchurch/polly-stratechery-reader.git"
+  }
   "keywords": [],
-  "author": "",
+  "author": "jonchurch",
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.413.0",
