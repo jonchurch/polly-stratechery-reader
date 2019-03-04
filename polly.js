@@ -6,8 +6,8 @@ const Stream = require("stream");
 //Read more at http://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-credentials-node.html
 const Polly = new AWS.Polly({
   region: process.env.AWS_REGION || "us-east-1", //"eu-west-1",
-  accessKeyId: process.env.ACCESS_KEY, //'REPLACETHISWITHYOURACCESSKEYID',
-  secretAccessKey: process.env.SECRET //'rePlaceThisWithYourSecretAccessKey1234567890'
+  accessKeyId: process.env.ACCESS_KEY,
+  secretAccessKey: process.env.SECRET
 });
 
 const getPlayer = function() {
