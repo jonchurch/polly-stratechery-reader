@@ -22,17 +22,38 @@ const getPlayer = function() {
 
 const params = { OutputFormat: "pcm", VoiceId: "Matthew" };
 
-const speak = function(text) {
-  params.Text = text;
-  Polly.synthesizeSpeech(params, function(err, res) {
-    if (err) {
-      console.log("err", err);
-    } else if (res && res.AudioStream instanceof Buffer) {
-      const bufferStream = new Stream.PassThrough();
-      bufferStream.end(res.AudioStream);
-      bufferStream.pipe(getPlayer());
-    }
+const synthesize = function(text) {
+  return new Promise(function(resolve, reject) {
+    params.Text = text;
+    Polly.synthesizeSpeech(params, function(err, res) {
+      if (err) {
+        // console.log("err", err);
+        reject(err);
+      } else if (res && res.AudioStream instanceof Buffer) {
+        resolve(res.AudioStream);
+      } else {
+        reject(new Error("AudioStream not instanceof Buffer"));
+      }
+    });
   });
 };
 
-module.exports = { speak: speak };
+const speak = audioBuffer => {
+  if (audioBuffer && audioBuffer instanceof Buffer) {
+    return new Promise((resolve, reject) => {
+      const bufferStream = new Stream.PassThrough();
+      bufferStream.end(audioBuffer);
+      bufferStream.pipe(getPlayer());
+      bufferStream.on("end", () => {
+        resolve();
+      });
+      bufferStream.on("error", err => {
+        reject(err);
+      });
+    });
+  } else {
+    throw new Error("audioBuffer must be a Buffer");
+  }
+};
+
+module.exports = { speak, synthesize };
