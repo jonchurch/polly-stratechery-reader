@@ -3,7 +3,7 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const chunk = require("lodash.chunk");
 
-const { speak, transcribe } = require("./polly");
+const { speak, synthesize } = require("./polly");
 
 const URL =
   process.argv[2] || "https://stratechery.com/2019/the-value-chain-constraint/";
@@ -17,7 +17,7 @@ axios
       .children()
       .text();
     const textChunks = chunk(allText, 3000);
-    const audioBlobs = textChunks.map(chunk => transcribe(chunk.join("")));
+    const audioBlobs = textChunks.map(chunk => synthesize(chunk.join("")));
     Promise.all(audioBlobs).then(blobs => {
       const bigBlob = Buffer.concat(blobs);
       speak(bigBlob);
