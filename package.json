@@ -20,8 +20,10 @@
     "aws-sdk": "^2.413.0",
     "axios": "^0.18.0",
     "cheerio": "^1.0.0-rc.2",
-    "dotenv": "^6.2.0",
     "lodash.chunk": "^4.2.0",
     "speaker": "^0.4.1"
+  },
+  "devDependencies": {
+    "dotenv": "^6.2.0"
   }
 }

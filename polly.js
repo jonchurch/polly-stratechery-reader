@@ -56,4 +56,27 @@ const speak = audioBuffer => {
   }
 };
 
-module.exports = { speak, synthesize };
+const startSpeechSynthesisTask = ({ text, key }) => {
+  // submit longform content to the async task queue
+  return new Promise(function(resolve, reject) {
+    if (!text) reject(new Error("Must pass text to be synthesized"));
+    const params = {
+      Text: text,
+      OutputS3BucketName: process.env.BUCKET_NAME,
+      OutputS3KeyPrefix: key,
+      OutputFormat: "mp3",
+      VoiceId: "Matthew",
+      TextType: "ssml"
+    };
+    Polly.startSpeechSynthesisTask(params, function(err, task) {
+      if (err) {
+        console.log({ err });
+        reject(err);
+      } else {
+        resolve(task);
+      }
+    });
+  });
+};
+
+module.exports = { speak, synthesize, startSpeechSynthesisTask };
