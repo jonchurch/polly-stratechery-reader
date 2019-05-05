@@ -20,9 +20,10 @@ const getPlayer = function() {
   });
 };
 
-const params = { OutputFormat: "pcm", VoiceId: "Matthew" };
+// const params = { OutputFormat: "pcm", VoiceId: "Matthew" };
 
-const synthesize = function(text) {
+const synthesize = function(text, outputFormat) {
+  const params = { OutputFormat: outputFormat, VoiceId: "Matthew" };
   return new Promise(function(resolve, reject) {
     params.Text = text;
     Polly.synthesizeSpeech(params, function(err, res) {
