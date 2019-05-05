@@ -1,3 +1,6 @@
+
+*.mp3
+
 # Secrets
 .env
 credentials.json
